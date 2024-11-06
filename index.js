@@ -3,7 +3,7 @@ const app = express();
 const cors = require("cors");
 
 const mongoose = require("mongoose");
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 10000;
 require('dotenv').config()
 
 // middleware
@@ -25,7 +25,7 @@ app.use("/api/auth", userRoutes)
 app.use("/api/admin", adminRoutes)
 
 async function main() {
-  await mongoose.connect(process.env.DB_URL);
+  await mongoose.connect("mongodb+srv://sabikm:sabikmdb@cluster0.zx9xt.mongodb.net/camerastore?retryWrites=true&w=majority&appName=Cluster0");
   app.use("/", (req, res) => {
     res.send("Book Store Server is running!");
   });
@@ -36,3 +36,4 @@ main().then(() => console.log("Mongodb connect successfully!")).catch(err => con
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
+// process.env.DB_URL
